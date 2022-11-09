@@ -10,7 +10,6 @@ public class Encryptor {
     Encryptor(Algo algorithm) {
         this.algorithm = algorithm;
         this.shift = 0;
-
     }
 
     Encryptor(Algo algorithm, int shift) {
@@ -18,7 +17,7 @@ public class Encryptor {
         this.shift = shift;
     }
 
-    // An method that calls other methods depending on what algorithm we are using
+    // A method that calls other methods depending on what algorithm we are using
     public String encrypt(String input) {
         return switch (this.algorithm) {
             case SHA256 -> getSHA256(input);
@@ -27,7 +26,7 @@ public class Encryptor {
         };
     }
 
-    // A ceaser cipher that shifts all letters using bit shift
+    // A Caesar cipher that shifts all letters using bit shift
     private String getCaesar(String stringToCipher, Integer shift) {
         byte[] bytes = stringToCipher.getBytes();
         StringBuilder sb = new StringBuilder();
