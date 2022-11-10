@@ -1,5 +1,6 @@
 package net.ewari;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,7 +13,6 @@ import java.util.Scanner;
  * TODO: 11/9/22 make a new class to deal with fetching and passing passwords
  */
 public class ValidatorApp {
-
     public static ArrayList<User> userList = new ArrayList<>(10);
 
     //Test list to test out a list of User classes
