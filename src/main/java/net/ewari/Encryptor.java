@@ -23,6 +23,7 @@ public class Encryptor {
             case SHA256 -> getSHA256(input);
             case SHA512 -> getSHA512(input);
             case CAESAR -> getCaesar(input, this.shift);
+            case MD5    -> getMD5(input);
         };
     }
 
@@ -58,6 +59,22 @@ public class Encryptor {
         String genPassword = null;
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");
+            byte[] bytes = md.digest(stringToHash.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte aByte : bytes) {
+                sb.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
+            }
+            genPassword = sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return genPassword;
+    }
+
+    private String getMD5(String stringToHash) {
+        String genPassword = null;
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] bytes = md.digest(stringToHash.getBytes());
             StringBuilder sb = new StringBuilder();
             for (byte aByte : bytes) {

@@ -3,5 +3,6 @@ package net.ewari;
 public enum Algo {
     SHA256,
     SHA512,
-    CAESAR
+    CAESAR,
+    MD5
 }
