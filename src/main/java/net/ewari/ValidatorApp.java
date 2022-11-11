@@ -30,14 +30,15 @@ public class ValidatorApp {
         }
     }
 
-    public static void exit() {
-        running = false;
-    }
 
     public static void retry() {
         System.out.print("Not a valid input, ");
     }
 
+    // an exit condition for the code so that the program can close
+    public static void exit() {
+        running = false;
+    }
     public static void runApp() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to login app, L: login, R: register, X: exit.");
@@ -68,19 +69,23 @@ public class ValidatorApp {
     // Register method that adds a new user to the list
     public static void register() {
         Scanner scanner = new Scanner(System.in);
+        Encryptor encryptor = new Encryptor(Algo.SHA256);
         System.out.println("Username: ");
         String username = scanner.next();
         System.out.println("Password: ");
         String password = scanner.next();
-        User test = new User(username,password);
+        User test = new User(username,encryptor.encrypt(password));
         for (User u:userList) {
             if (u.getUsername().equals(test.getUsername())) {
                 System.out.println("User already exists, Y:Try again, N:Return to main");
                 if ("Y".equalsIgnoreCase(scanner.next())) {
                     register();
+                    break;
                 }
+                break;
             }
         }
+        userList.add(test);
     }
 }
 
