@@ -43,10 +43,19 @@ public class ValidatorApp {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to login app, L: login, R: register, X: exit.");
         switch (scanner.nextLine().toLowerCase()) {
-            case "l" ->  login();
-            case "r" ->  register();
-            case "x" ->  exit();
-            default  ->  retry();
+            case "l" :  {
+                login();
+                break;
+            }
+            case "r" :  {
+                register();
+                break;}
+            case "x" :  {
+                exit();
+                break;}
+            default  :  {
+                retry();
+                break;}
         }
     }
     // Login method to check users entry to an existing list

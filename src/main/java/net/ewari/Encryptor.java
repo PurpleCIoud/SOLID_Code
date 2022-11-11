@@ -19,12 +19,22 @@ public class Encryptor {
 
     // A method that calls other methods depending on what algorithm we are using
     public String encrypt(String input) {
-        return switch (this.algorithm) {
-            case SHA256 -> getSHA256(input);
-            case SHA512 -> getSHA512(input);
-            case CAESAR -> getCaesar(input, this.shift);
-            case MD5    -> getMD5(input);
-        };
+        String result = null;
+         switch (this.algorithm) {
+            case SHA256 : {
+                result = getSHA256(input);
+                break;}
+            case SHA512 : {
+                result = getSHA512(input);
+                break;}
+            case CAESAR : {
+                result = getCaesar(input, this.shift);
+                break;}
+            case MD5    : {
+                result = getMD5(input);
+                break;}
+        }
+        return result;
     }
 
     // A Caesar cipher that shifts all letters using bit shift
