@@ -1,6 +1,5 @@
 package net.ewari;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,6 +13,7 @@ import java.util.Scanner;
  */
 public class ValidatorApp {
     public static ArrayList<User> userList = new ArrayList<>(10);
+    private static boolean running = true;
 
     //Test list to test out a list of User classes
     public static void initialiseTestList() {
@@ -24,22 +24,31 @@ public class ValidatorApp {
     }
 
     public static void main(String[] args) {
-        initialiseTestList();
-        runApp();
-
+        while (running) {
+            runApp();
+        }
     }
 
-    public static void exit() {}
+    public static void exit() {
+        running = false;
+    }
+
+    public static void retry() {
+        System.out.print("Not a valid input, ");
+    }
+
     public static void runApp() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to login app, L: login, R: register, X: exit.");
-        switch (scanner.nextLine()) {
-            case "L" ->  login();
-            case "R" ->  register();
-            case "X" ->  exit();
-            default  ->  runApp();
+        switch (scanner.nextLine().toLowerCase()) {
+            case "l" ->  login();
+            case "r" ->  register();
+            case "x" ->  exit();
+            default  ->  retry();
         }
     }
+    // Login method to check users entry to an existing list
+    // uses Validator, Encryptor and User classes.
     public static void login() {
         Validator v = new Validator();
         Encryptor e = new Encryptor(Algo.SHA256);
@@ -55,6 +64,7 @@ public class ValidatorApp {
             System.out.println("Login Failed");
         }
     }
+    // Register method that adds a new user to the list
     public static void register() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Username: ");
@@ -65,10 +75,8 @@ public class ValidatorApp {
         for (User u:userList) {
             if (u.getUsername().equals(test.getUsername())) {
                 System.out.println("User already exists, Y:Try again, N:Return to main");
-                if ("Y".equals(scanner.next())) {
+                if ("Y".equalsIgnoreCase(scanner.next())) {
                     register();
-                } else {
-                    runApp();
                 }
             }
         }

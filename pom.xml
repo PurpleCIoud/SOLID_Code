@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.ewari</groupId>
-    <artifactId>testcode</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>SOLID</artifactId>
+    <version>SNAPSHOT</version>
     <dependencies>
         <dependency>
             <groupId>org.jetbrains</groupId>
@@ -16,9 +16,25 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>net.ewari.ValidatorApp</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <version>3.1.0</version>
+            </plugin>
+        </plugins>
+    </build>
     <properties>
-        <maven.compiler.source>19</maven.compiler.source>
-        <maven.compiler.target>19</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
