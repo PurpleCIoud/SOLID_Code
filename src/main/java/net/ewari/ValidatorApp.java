@@ -24,6 +24,7 @@ public class ValidatorApp {
     }
 
     public static void main(String[] args) {
+        initialiseTestList();
         while (running) {
             runApp();
         }
